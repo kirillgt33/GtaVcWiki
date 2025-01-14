@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block title %}Оружие{% endblock %}
+
+{% block content %}
+<section class="weapons-section">
+    <div class="container">
+        <h1 class="page-title">Оружие GTA Vice City</h1>
+        <div class="weapons-grid">
+            {% for weapon in weapons_list %}
+            <div class="weapon-card">
+                <img src="{{ url_for('static', filename='images/weapons/' + weapon.image_url) }}" alt="{{ weapon.title }}" class="weapon-image">
+                <div class="weapon-info">
+                    <h2 class="weapon-name">{{ weapon.title }}</h2>
+                    <p class="weapon-description">{{ weapon.content }}</p>
+                    <p class="weapon-icon"><strong>Иконка оружия</strong></p>
+                    <div class="weapon-icon-img">
+                        <img src="{{ url_for('static', filename='images/weapons/icons/' + weapon.icon_url) }}" alt="{{ weapon.type }}">
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock %}

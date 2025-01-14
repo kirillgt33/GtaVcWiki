@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block title %}Транспорт{% endblock %}
+
+{% block content %}
+<section class="gallery">
+    <h1>Галерея транспорта</h1>
+    <div class="grid">
+        {% for transport in transports_list %}
+        <div class="card">
+            <h3>{{ transport.title }}</h3>
+            <img src="{{ url_for('static', filename='images/transports/' + transport.image_url) }}" alt="{{ transport.title }}">
+            <p>{{ transport.content }}</p>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+{% endblock %}

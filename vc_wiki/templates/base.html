@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GTA Vice City Wiki | {% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <img src="{{ url_for('static', filename='images/logo.png') }}">
+                <a href="{{ url_for('main.index') }}">Vice City Wiki</a>
+            </div>
+            
+            <ul class="menu">
+                <li><a href="/">Главная</a></li>
+                <li><a href="{{ url_for('main.transports') }}">Транспорт</a></li>
+                <li><a href="{{ url_for('main.weapons') }}">Оружие</a></li>
+                <li><a href="{{ url_for('main.characters') }}">Персонажи</a>
+                <li><a href="{{ url_for('main.missions') }}">Миссии</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+    <footer>
+        <p>&copy; 2024 GTA Vice City Wiki</p>
+    </footer>
+</body>
+</html>

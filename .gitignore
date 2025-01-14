@@ -1,0 +1,3 @@
+**/__pycache__/
+migrations/versions/*.pyc
+migrations/versions/__pycache__/

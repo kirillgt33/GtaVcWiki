@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block title %}Главная{% endblock %}
+
+{% block content %}
+<section class="hero">
+    <h1>GTA Vice City Wiki</h1>
+    <p>Последние новости о мире GTA Vice City.</p>
+</section>
+
+<section class="news">
+    <h2>Новости</h2>
+    <div class="news-list">
+        {% for news in news_list %}
+        <article class="news-item">
+            <a href="{{ url_for('main.news_detail', slug=news.slug) }}"><h3>{{ news.title }}</h3></a>
+            <img src="{{ url_for('static', filename='images/news/' + news.image_url) }}">
+            <p>{{ news.content[:100] }}...<a href="{{ url_for('main.news_detail', slug=news.slug) }}">читать далее</a></p>
+            <span class="date">{{ news.date|dateformat('long') }}</span>
+        </article>
+        {% endfor %}
+    </div>
+</section>
+{% endblock %}

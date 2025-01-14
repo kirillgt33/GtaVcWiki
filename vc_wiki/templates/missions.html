@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block title %}Миссии{% endblock %}
+
+{% block content %}
+<section class="missions-section">
+    <div class="container">
+        <h1 class="page-title">Миссии GTA Vice City</h1>
+        <div class="missions-grid">
+            {% for mission in missions %}
+            <div class="mission-card">
+                <div class="mission-image-wrapper">
+                    <img src="{{ url_for('static', filename='images/missions/' + mission.image_url) }}" alt="{{ mission.name }}" class="mission-image">
+                </div>
+                <div class="mission-info">
+                    <h2 class="mission-name">{{ mission.name }}</h2>
+                    <p class="mission-location">Локация: {{ mission.location }}</p>
+                    <p class="mission-description">{{ mission.description }}</p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock %}

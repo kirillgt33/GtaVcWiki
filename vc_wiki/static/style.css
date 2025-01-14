@@ -1,0 +1,441 @@
+/* Общие стили */
+body {
+    font-family: 'Arial', sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    background-color: #f9f9f9;
+    color: #333;
+}
+
+a {
+    color: #ff6f61;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: #ff3b2e;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+/* Навигация */
+header {
+    background: #222;
+    color: #fff;
+    padding: 1rem 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+header nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+header nav img {
+    max-width: 60px;
+    max-height: 60px;
+    border-radius:50%;
+    overflow:hidden;
+}
+
+header nav .logo {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #ff6f61;
+}
+
+header nav ul {
+    display: flex;
+    list-style: none;
+    gap: 1.5rem;
+}
+
+header nav ul li {
+    display: inline;
+}
+
+header nav ul li a {
+    font-size: 1rem;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+/* Главная страница */
+.hero {
+    text-align: center;
+    padding: 2rem 1rem;
+    background: linear-gradient(to right, #ff6f61, #ff3b2e);
+    color: #fff;
+}
+
+.hero h1 {
+    font-size: 2.5rem;
+    margin: 0;
+}
+
+.hero p {
+    font-size: 1.2rem;
+    margin-top: 1rem;
+}
+
+/* Секция новостей */
+.news {
+    margin: 2rem 0;
+    padding: 1rem;
+}
+
+.news h2 {
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+}
+
+.news-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+}
+
+.news-item {
+    background: #fff;
+    padding: 1.5rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.news-item img {
+    max-width: 100%;
+    height: auto;
+    object-fit: cover; /* Обрезаем изображение, чтобы оно соответствовало размерам */
+    border-radius: 8px; /* Скругляем углы */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Добавляем тень */
+}
+
+.news-item h3 {
+    margin-bottom: 0.5rem;
+    color: #ff6f61;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.news-item h3:hover {
+    color: #ff3b2e;
+}
+
+.news-item p {
+    margin-bottom: 1rem;
+}
+
+.news-item .date {
+    font-size: 0.9rem;
+    color: #666;
+}
+
+/* Галерея транспорта */
+.gallery {
+    margin: 2rem 0;
+    padding: 1rem;
+}
+
+.gallery h1 {
+    font-size: 2rem;
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+}
+
+.card {
+    background: #fff;
+    padding: 1rem;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.card img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 5px;
+    margin-bottom: 1rem;
+}
+
+.card h3 {
+    margin-bottom: 0.5rem;
+    color: #ff6f61;
+}
+
+.card p {
+    font-size: 0.9rem;
+    color: #666;
+}
+
+/* Стили для страницы weapons */
+.weapons-section {
+    padding: 40px 20px;
+    background-color: #f8f9fa; /* Светлый фон */
+}
+
+.page-title {
+    font-size: 36px;
+    text-align: center;
+    margin-bottom: 30px;
+    color: #333;
+}
+
+.weapons-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.weapon-card {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.weapon-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+}
+
+.weapon-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover; /* Картинка обрезается, сохраняя пропорции */
+    border-bottom: 1px solid #ddd;
+}
+
+.weapon-info {
+    padding: 15px;
+}
+
+.weapon-name {
+    font-size: 20px;
+    color: #222;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    text-align: center;
+}
+
+.weapon-description {
+    font-size: 14px;
+    color: #555;
+    margin-bottom: 10px;
+}
+
+.weapon-icon {
+    font-size: 14px;
+    color: #777;
+    text-align: center;
+}
+
+.weapon-icon-img {
+    text-align: center;
+    margin-top: 10px;
+}
+
+.weapon-icon-img img {
+    width: 64px;
+    height: 64px;
+    object-fit: contain; /* Сохраняет пропорции изображения */
+}
+
+/* Стили для страницы characters */
+.characters-section {
+    padding: 40px 20px;
+    background-color: #eef1f5; /* Светло-серый фон */
+}
+
+.page-title {
+    font-size: 36px;
+    text-align: center;
+    margin-bottom: 30px;
+    color: #333;
+}
+
+.characters-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.character-card {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.character-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+}
+
+.character-image {
+    width: 100%;
+    height: 500px;
+    object-fit: cover;
+    border-bottom: 1px solid #ddd;
+}
+
+.character-info {
+    padding: 15px;
+    text-align: center;
+}
+
+.character-name {
+    font-size: 20px;
+    color: #222;
+    margin-bottom: 5px;
+    text-transform: uppercase;
+}
+
+.character-role {
+    font-size: 16px;
+    color: #555;
+    font-style: italic;
+    margin-bottom: 10px;
+}
+
+.character-description {
+    font-size: 14px;
+    color: #666;
+    line-height: 1.5;
+}
+
+/* Стили для страницы missions */
+.missions-section {
+    padding: 40px 20px;
+    background-color: #f9f9f9; /* Светло-серый фон */
+}
+
+.page-title {
+    font-size: 36px;
+    text-align: center;
+    margin-bottom: 30px;
+    color: #333;
+}
+
+.missions-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+}
+
+.mission-card {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.mission-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+}
+
+.mission-image-wrapper {
+    height: 200px;
+    overflow: hidden;
+    background-color: #eaeaea; /* Цвет фона для случая отсутствия изображения */
+}
+
+.mission-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.mission-info {
+    padding: 15px;
+}
+
+.mission-name {
+    font-size: 20px;
+    color: #222;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+}
+
+.mission-location {
+    font-size: 16px;
+    color: #555;
+    font-style: italic;
+    margin-bottom: 10px;
+}
+
+.mission-description {
+    font-size: 14px;
+    color: #666;
+    line-height: 1.5;
+}
+
+
+/* Подвал */
+footer {
+    background: #222;
+    color: #fff;
+    text-align: center;
+    padding: 1rem 0;
+    margin-top: 2rem;
+}
+
+footer p {
+    font-size: 0.9rem;
+    margin: 0;
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+    header nav ul {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .hero h1 {
+        font-size: 2rem;
+    }
+
+    .hero p {
+        font-size: 1rem;
+    }
+
+    .news-list,
+    .grid {
+        grid-template-columns: 1fr;
+    }
+}

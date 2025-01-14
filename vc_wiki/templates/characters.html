@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block title %}Персонажи{% endblock %}
+
+{% block content %}
+<section class="characters-section">
+    <div class="container">
+        <h1 class="page-title">Персонажи GTA Vice City</h1>
+        <div class="characters-grid">
+            {% for character in characters_list %}
+            <div class="character-card">
+                <img src="{{ url_for('static', filename='images/characters/' + character.image_url) }}" alt="{{ character.name }}" class="character-image">
+                <div class="character-info">
+                    <h2 class="character-name">{{ character.name }}</h2>
+                    <p class="character-role">{{ character.role_label }}</p>
+                    <p class="character-description">{{ character.description }}</p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock %}
