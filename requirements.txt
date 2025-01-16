@@ -1,5 +1,9 @@
-Flask
-Flask-SQLAlchemy
-Flask-Migrate
-Flask-Admin
-WTForms
+alembic==1.14.0
+Flask==3.1.0
+Flask_Admin==1.6.1
+flask_babel==4.0.0
+Flask_Migrate==4.0.7
+flask_sqlalchemy==3.1.1
+python-slugify==8.0.4
+SQLAlchemy==2.0.36
+WTForms==3.2.1
