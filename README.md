@@ -12,12 +12,13 @@
 
 ![Screenshot](screenshot.png)
 
+
 **О структуре проекта:**
-* [migrations](./migrations) - миграции базы данных
-* [vc_wiki](./vc_wiki) - основное приложение
-    * [static](./vc_wiki/static/) - статические файлы
-    * [templates](./vc_wiki/templates/) - HTML шаблоны
-    * [__init__.py](./vc_wiki/__init__.py) - инициализация приложения
+* [migrations/](./migrations) - миграции базы данных
+* [vc_wiki/](./vc_wiki) - основное приложение
+    * [static/](./vc_wiki/static/) - статические файлы
+    * [templates/](./vc_wiki/templates/) - HTML шаблоны
+    * [\_\_init\_\_.py](./vc_wiki/__init__.py) - инициализация приложения
     * [admin.py](./vc_wiki/admin.py) - инициализация админ панели и её настройки
     * [extensions.py](./vc_wiki/extensions.py) - инициализация сторонних библиотек
     * [models.py](./vc_wiki/models.py) - модели базы данных
