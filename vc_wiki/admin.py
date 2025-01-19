@@ -1,14 +1,32 @@
 import os
+from flask_login import current_user
+from flask_admin import AdminIndexView
 from flask_admin.contrib.sqla import ModelView
 from flask_admin.form import FileUploadField
 from wtforms.fields import SelectField
-from flask import current_app
+from flask import current_app, redirect, url_for
 from .models import News, Transport, Weapon, Character
 from .extensions import db, admin
 from slugify import slugify
 
 
-class NewsAdminView(ModelView):
+class MyAdminIndexView(AdminIndexView):
+    def is_accessible(self):
+        return current_user.is_authenticated and current_user.is_admin
+
+    def inaccessible_callback(self, name, **kwargs):
+        return redirect(url_for('main.login'))
+
+
+class MyAdminModelView(ModelView):
+    def is_accessible(self):
+        return current_user.is_authenticated and current_user.is_admin
+
+    def inaccessible_callback(self, name, **kwargs):
+        return redirect(url_for('main.login'))
+
+
+class NewsAdminView(MyAdminModelView):
     column_exclude_list = ['slug']  # Исключить slug из списка отображения
     form_excluded_columns = ['slug']  # Исключить slug из формы редактирования
 
@@ -38,7 +56,7 @@ class NewsAdminView(ModelView):
             model.slug = slugify(model.title)
 
 
-class TransportAdminView(ModelView):
+class TransportAdminView(MyAdminModelView):
     # Переопределяем поле для загрузки файлов
     form_overrides = {
         'image_url': FileUploadField,
@@ -75,7 +93,7 @@ class TransportAdminView(ModelView):
     }
 
 
-class WeaponAdminView(ModelView):
+class WeaponAdminView(MyAdminModelView):
     form_overrides = {
         'image_url': FileUploadField,
         'icon_url': FileUploadField,
@@ -116,7 +134,7 @@ class WeaponAdminView(ModelView):
     }
 
 
-class CharacterAdminView(ModelView):
+class CharacterAdminView(MyAdminModelView):
     form_overrides = {
         'image_url': FileUploadField,
         'role': SelectField
@@ -147,7 +165,7 @@ class CharacterAdminView(ModelView):
 
 def init_admin(app):
     # Подключаем Flask-Admin к приложению Flask
-    admin.init_app(app)
+    admin.init_app(app, index_view=MyAdminIndexView())
     admin.add_view(NewsAdminView(News, db.session))
     admin.add_view(TransportAdminView(Transport, db.session))
     admin.add_view(WeaponAdminView(Weapon, db.session))

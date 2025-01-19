@@ -1,14 +1,74 @@
-from flask import Blueprint, render_template
-from .models import News, Transport, Weapon, Character
+from flask import Blueprint, render_template, redirect, url_for, request, flash
+from flask_login import login_user, logout_user, current_user, login_required
+from .extensions import db
+from .models import User, News, Transport, Weapon, Character
 from .admin import CharacterAdminView
 
-main = Blueprint('main', __name__)
+main = Blueprint('main', __name__, template_folder='templates')
 
 
 @main.route('/')
+@main.route('/index')
 def index():
     news_list = News.query.order_by(News.date.desc()).all()
     return render_template('index.html', news_list=news_list)
+
+
+@main.route('/login', methods=['GET', 'POST'])
+def login():
+    if current_user.is_authenticated:
+        return redirect(url_for('main.index'))
+
+    if request.method == 'POST':
+        username = request.form['username']
+        password = request.form['password']
+        user = User.query.filter_by(username=username).first()
+
+        if user and user.check_password(password):
+            login_user(user)
+            return redirect(url_for('main.index'))
+
+        flash('Неверное имя пользователя или пароль.', 'error')
+
+    return render_template('auth/login.html')
+
+
+@main.route('/register', methods=['GET', 'POST'])
+def register():
+    if current_user.is_authenticated:
+        return redirect(url_for('main.index'))
+
+    if request.method == 'POST':
+        username = request.form['username']
+        password = request.form['password']
+        confirm_password = request.form['confirm_password']
+
+        if password != confirm_password:
+            flash('Пароли не совпадают!', 'warning')
+            return redirect(url_for('main.register'))
+
+        existing_user = User.query.filter_by(username=username).first()
+        if existing_user:
+            flash('Пользователь с таким именем уже существует!', 'warning')
+            return redirect(url_for('main.register'))
+
+        new_user = User(username=username)
+        new_user.set_password(password)
+        db.session.add(new_user)
+        db.session.commit()
+
+        flash('Регистрация прошла успешно! Войдите в систему.', 'success')
+        return redirect(url_for('main.login'))
+
+    return render_template('auth/register.html')
+
+
+@main.route('/logout')
+@login_required
+def logout():
+    logout_user()
+    flash('Вы вышли из системы.', 'success')
+    return redirect(url_for('main.login'))
 
 
 @main.route('/news/<slug>')
