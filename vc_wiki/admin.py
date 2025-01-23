@@ -5,7 +5,7 @@ from flask_admin.contrib.sqla import ModelView
 from flask_admin.form import FileUploadField
 from wtforms.fields import SelectField
 from flask import current_app, redirect, url_for
-from .models import News, Transport, Weapon, Character
+from .models import News, Transport, Weapon, Character, Mission
 from .extensions import db, admin
 from slugify import slugify
 
@@ -163,6 +163,47 @@ class CharacterAdminView(MyAdminModelView):
     }
 
 
+class MissionAdminView(MyAdminModelView):
+    form_overrides = {
+        'image_url': FileUploadField,
+        'employer_icon': FileUploadField,
+        'employer': SelectField
+    }
+
+    form_args = {
+        'title': {
+            'label': 'Название'
+        },
+        'employer': {
+            'label': 'Работодатель',
+            'choices': [
+                ('Introduction', 'Начало'),
+                ('Ken Rosenberg (Lawyer)', 'Кен Розенберг (Адвокат)'),
+                ('Avery Carrington', 'Эйвери Кэррингтон'),
+                ('Juan Cortez', 'Хуан Кортес'),
+                ('Ricardo Diaz', 'Рикардо Диаз'),
+                ('Kent Paul', 'Кент Пол'),
+                ('Umberto Robina', 'Умберто Робина'),
+                ('Auntie Poulet', 'Тётушка Пуле'),
+                ('Mitch Baker', 'Митч Бейкер'),
+            ]
+        },
+        'description': {
+            'label': 'Описание'
+        },
+        'image_url': {
+            'label': 'Изображение',
+            'base_path': lambda: os.path.join(current_app.config['UPLOAD_FOLDER'], 'images', 'missions'),
+            'allow_overwrite': True
+        },
+        'employer_icon': {
+            'label': 'Иконка Работодателя',
+            'base_path': lambda: os.path.join(current_app.config['UPLOAD_FOLDER'], 'images', 'missions/employer_icons'),
+            'allow_overwrite': True
+        }
+    }
+
+
 def init_admin(app):
     # Подключаем Flask-Admin к приложению Flask
     admin.init_app(app, index_view=MyAdminIndexView())
@@ -170,3 +211,4 @@ def init_admin(app):
     admin.add_view(TransportAdminView(Transport, db.session))
     admin.add_view(WeaponAdminView(Weapon, db.session))
     admin.add_view(CharacterAdminView(Character, db.session))
+    admin.add_view(MissionAdminView(Mission, db.session))
