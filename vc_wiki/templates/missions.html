@@ -7,14 +7,13 @@
     <div class="container">
         <h1 class="page-title">Миссии GTA Vice City</h1>
         <div class="missions-grid">
-            {% for mission in missions %}
+            {% for mission in missions_list %}
             <div class="mission-card">
                 <div class="mission-image-wrapper">
-                    <img src="{{ url_for('static', filename='images/missions/' + mission.image_url) }}" alt="{{ mission.name }}" class="mission-image">
+                    <img src="{{ url_for('static', filename='images/missions/' + mission.image_url) }}" alt="{{ mission.title }}" class="mission-image">
                 </div>
                 <div class="mission-info">
-                    <h2 class="mission-name">{{ mission.name }}</h2>
-                    <p class="mission-location">Локация: {{ mission.location }}</p>
+                    <h2 class="mission-name">{{ mission.title }} | <img src="{{ url_for('static', filename='images/missions/employer_icons/' + mission.employer_icon) }}" alt="{{ mission.employer }}" class="employer_icon"></h2> 
                     <p class="mission-description">{{ mission.description }}</p>
                 </div>
             </div>

@@ -1,7 +1,7 @@
 from flask import Blueprint, render_template, redirect, url_for, request, flash
 from flask_login import login_user, logout_user, current_user, login_required
 from .extensions import db
-from .models import User, News, Transport, Weapon, Character
+from .models import User, News, Transport, Weapon, Character, Mission
 from .admin import CharacterAdminView
 
 main = Blueprint('main', __name__, template_folder='templates')
@@ -102,4 +102,5 @@ def characters():
 
 @main.route('/missions')
 def missions():
-    return render_template('missions.html')
+    missions_list = Mission.query.all()
+    return render_template('missions.html', missions_list=missions_list)
