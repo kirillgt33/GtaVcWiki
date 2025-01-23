@@ -59,3 +59,12 @@ class Character(db.Model):
     role = db.Column(db.String(50))
     description = db.Column(db.Text)
     image_url = db.Column(db.String(255))
+
+
+class Mission(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    title = db.Column(db.String(100), nullable=False)
+    employer = db.Column(db.String(50))
+    description = db.Column(db.Text)
+    image_url = db.Column(db.String(255))
+    employer_icon = db.Column(db.String(255))
